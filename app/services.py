@@ -8,9 +8,17 @@ def upload_image(dir_path, file):
     return path
 
 
-def parse_image(imgPath):
-    returncode = subprocess.call("sh scripts/parse_image.sh" + imgPath, shell=True)
-    if returncode == 0:
-        return "success"
+def parse_image(imgName):
+    cmd = "sh app/scripts/parse_image.sh " + imgName
+
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE, shell=True)
+
+    stdout, stderr = p.communicate()
+
+    if p.returncode == 0:
+        print stdout
+        return True
     else:
-        return "fail"
+        print stderr
+        return False

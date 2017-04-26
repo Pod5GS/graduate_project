@@ -26,7 +26,7 @@ disp(model_definition)
 net = caffe.Net(model_definition, model_weights, 'test');
 
 % path to image(.jpg)
-pathImg = fullfile('data');
+pathImg = fullfile('../app/static/data');
 
 % load class names
 load('objectName150.mat');
@@ -60,6 +60,9 @@ rgbPred = colorEncode(imPred, colors);
  
 % colormaps
 colormap = colorMap(imPred, objectNames);
+
+colormap_path = fullfile('../app/static/result/colormap.png')
+rgbPred_path = fullfile('../app/static/result/prediction.png')
     
-imwrite(colormap,'../app/static/result/colormap.png');
-imwrite(rgbPred,'../app/static/result/prediction.png');
+imwrite(colormap,colormap_path);
+imwrite(rgbPred,rgbPred_path);

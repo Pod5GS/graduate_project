@@ -7,16 +7,24 @@ import os
 # get the current folder
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template("index.html")
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload_and_parse', methods=['POST'])
 def upload():
-    file = request.files['file']
-    dir_path = os.path.join(APP_ROOT, '../sceneparsing/data/')
-    path = upload_image(dir_path, file)
-    color_map_path = '../sceneparsing/result/'
-    return render_template("index.html")
+    upload_file = request.files['file']
+    dir_path = os.path.join(APP_ROOT, 'static/data')
+    upload_image(dir_path, upload_file)
+    path = 'static/data/' + upload_file.filename
+    color_map_path = 'static/result/colormap.png'
+    prediction_path = 'static/result/prediction.png'
+    parse_image(upload_file.filename)
+    return jsonify({
+        'path': path,
+        'color_map_path': color_map_path,
+        'prediction_path': prediction_path
+    })
