@@ -61,5 +61,5 @@ rgbPred = colorEncode(imPred, colors);
 % colormaps
 colormap = colorMap(imPred, objectNames);
     
-imwrite(colormap,'result/colormap.png');
-imwrite(rgbPred,'result/prediction.png');
+imwrite(colormap,'../app/static/result/colormap.png');
+imwrite(rgbPred,'../app/static/result/prediction.png');
