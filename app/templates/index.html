@@ -211,6 +211,7 @@
 					<h3 class="heading">Prediction</h3>
 				</div>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				<div style='margin-top:20px;'><a class='col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary' onclick='showUpload()'>上传其他图片</a></div></div>
 			</div>
 			
 		</div>
@@ -365,8 +366,9 @@
 									uploadflag = false;
 								} else {
 									uploadflag = true;
-									$('#uploaded_img').attr(result['path'])
-									$('#resultarea').append("<div style='margin-top:20px;'><a class='col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary' onclick='showUpload()'>上传其他图片</a></div></div>");
+									var jsonResult = jQuery.parseJSON(result)
+									$('#uploaded_img').attr('src', jsonResult.path);
+									$('#uploaded_name').html(jsonResult.name)
 									showResult();
 								}
 							});
