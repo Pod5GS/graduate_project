@@ -190,62 +190,29 @@
 		    </div>
 		</div>
 		<!-- END container -->
-		<div id="resultarea" class="container" style="display:none;">
+		<div id="resultarea" class="container" style="display:none">
 			<div
 				class="col-md-8 col-md-offset-2 text-center fh5co-section-heading work-box fadeInUp animated">
+				<h2 class="uline-title text-center">您上传的图片是</h2>
+				<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				<div class="col-md-12 col-sm-12 col-xs-12 col-xxs-12 text-center fh5co-work-item work-box fadeInUp animated">
+					<figure><a href="#"><img id="uploaded_img" class="img-responsive" src="" alt="Free HTML5 Template"></a></figure>
+					<h3 class="heading" id="uploaded_name"></h3>
+				</div>
+				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				<h2 class="uline-title text-center">以下是机器识别的结果</h2>
+				<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				<div class="col-md-6 col-sm-6 col-xs-6 col-xxs-6 text-center fh5co-work-item work-box fadeInUp animated">
+					<figure><a href="#"><img id="color_map"class="img-responsive" src="static/result/colormap.png" alt="Free HTML5 Template"></a></figure>
+					<h3 class="heading">Color Map</h3>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6 col-xxs-6 text-center fh5co-work-item work-box fadeInUp animated">
+					<figure><a href="#"><img id="prediction"class="img-responsive" src="static/result/prediction.png" alt="Free HTML5 Template"></a></figure>
+					<h3 class="heading">Prediction</h3>
+				</div>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 			</div>
 			
-		</div>
-		<!-- END container -->
-		<div id="detailarea" class="container" style="display:none;">
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="item">
-						<img id="detail_img" src="static/images/sample.jpg" class="img-responsive" alt="...">
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<h3 class="second-child">
-						<span id="detail_name"></span>
-					</h3>
-					<p>简介</p>
-					<br>
-					<h4>
-						<span>详情</span>
-					</h4>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td>科</td>
-								<td></td>
-								<td id="detail_class"></td>
-							</tr>
-							<tr>
-								<td>别名</td>
-								<td></td>
-								<td id="detail_oname"></td>
-							</tr>
-							<tr>
-								<td>拉丁名</td>
-								<td></td>
-								<td id="detail_fname"></td>
-							</tr>
-							<tr>
-								<td>常见地</td>
-								<td></td>
-								<td id="detail_address"></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="row" style="margin-top:20px;">
-					<a id="return"
-						class="col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary"
-						onclick="showResult()">返回</a>
-			</div>
 		</div>
 		<!-- END container -->
 	</div>
@@ -398,31 +365,8 @@
 									uploadflag = false;
 								} else {
 									uploadflag = true;
-									$('#resultarea').empty();
-									$('#resultarea').append('<div class="col-md-8 col-md-offset-2 text-center fh5co-section-heading work-box fadeInUp animated"><h2 class="uline-title text-center">以下是机器识别的结果</h2><div class="fh5co-spacer fh5co-spacer-sm"></div></div>');
-									var jsonresult = jQuery.parseJSON(result);
-									$.each(jsonresult,function(i,list){
-									    var divplant = "<div class='col-md-4 col-sm-6 col-xs-6 col-xxs-12 text-center fh5co-work-item work-box fadeInUp animated'>"
-					                                   + "<figure>"
-						                               + "<a onclick='showDetail(event)'>"
-						                               + "<img class='img-responsive' src='" + list.plant_image + "' "
-						                               + "plant_name='" + list.plant_name + "' "
-						                               + "other_name='" + list.other_name + "' "
-						                               + "formal_name='" + list.formal_name + "' "
-						                               + "plant_class='" + list.plant_class + "' "
-						                               + "plant_address='" + list.plant_address + "'" 
-						                               + "></a>"
-					                                   + "</figure>"
-					                                   + "<h3 class='heading'>"
-					                                   + list.plant_name
-					                                   + "</h3>"
-					                                   + "<p>可能性："
-					                                   + list.score
-					                                   + "</p>"
-				                                       + "</div>"
-			                           $('#resultarea').append(divplant);
-									})
-									$('#resultarea').append("<div style='margin-top:20px;'><a class='col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary' onclick='showUpload()'>鉴别其它的植物</a></div></div>");
+									$('#uploaded_img').attr(result['path'])
+									$('#resultarea').append("<div style='margin-top:20px;'><a class='col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary' onclick='showUpload()'>上传其他图片</a></div></div>");
 									showResult();
 								}
 							});

@@ -20,11 +20,8 @@ def upload():
     dir_path = os.path.join(APP_ROOT, 'static/data')
     upload_image(dir_path, upload_file)
     path = 'static/data/' + upload_file.filename
-    color_map_path = 'static/result/colormap.png'
-    prediction_path = 'static/result/prediction.png'
     parse_image(upload_file.filename)
     return jsonify({
         'path': path,
-        'color_map_path': color_map_path,
-        'prediction_path': prediction_path
+        'name': upload_file.filename
     })
