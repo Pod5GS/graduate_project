@@ -203,15 +203,17 @@
 				<h2 class="uline-title text-center">以下是机器识别的结果</h2>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				<div class="col-md-6 col-sm-6 col-xs-6 col-xxs-6 text-center fh5co-work-item work-box fadeInUp animated">
-					<figure><a href="#"><img id="color_map"class="img-responsive" src="static/result/colormap.png" alt="Free HTML5 Template"></a></figure>
 					<h3 class="heading">Color Map</h3>
+					<figure><a href="#"><img id="color_map"class="img-responsive" src="" alt="Free HTML5 Template"></a></figure>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6 col-xxs-6 text-center fh5co-work-item work-box fadeInUp animated">
-					<figure><a href="#"><img id="prediction"class="img-responsive" src="static/result/prediction.png" alt="Free HTML5 Template"></a></figure>
 					<h3 class="heading">Prediction</h3>
+					<figure><a href="#"><img id="prediction"class="img-responsive" src="" alt="Free HTML5 Template"></a></figure>
 				</div>
 				<div class="fh5co-spacer fh5co-spacer-sm"></div>
-				<div style='margin-top:20px;'><a class='col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary' onclick='showUpload()'>上传其他图片</a></div></div>
+				<div style='margin-top:20px;'>
+					<a class='col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary' onclick='showUpload()'>识别其他图片</a>
+				</div>
 			</div>
 			
 		</div>
@@ -368,7 +370,9 @@
 									uploadflag = true;
 									var jsonResult = jQuery.parseJSON(result)
 									$('#uploaded_img').attr('src', jsonResult.path);
-									$('#uploaded_name').html(jsonResult.name)
+									$('#color_map').attr('src', jsonResult.color_map_path);
+									$('#prediction').attr('src', jsonResult.prediction_path);
+									$('#uploaded_name').html(jsonResult.name);
 									showResult();
 								}
 							});
