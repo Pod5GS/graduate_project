@@ -5,10 +5,11 @@ from utils import generate_random_sequence
 
 
 def upload_and_parse(dir_path, uploaded_file):
+    random_sequence = generate_random_sequence()
     filename = uploaded_file.filename
-    path = "/".join([dir_path, filename])
+    path = dir_path + '/' + random_sequence + '_' + filename
     uploaded_file.save(path)
-    cmd = "sh app/scripts/parse_image.sh " + filename
+    cmd = "sh app/scripts/parse_image.sh " + random_sequence + '_' + filename
 
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE, shell=True)
@@ -16,10 +17,9 @@ def upload_and_parse(dir_path, uploaded_file):
     stdout, stderr = p.communicate()
 
     if p.returncode == 0:
-        path = 'static/data/' + filename
-        random_sequence = generate_random_sequence()
-        color_map_path = 'static/result/colormap' + random_sequence + '.png'
-        prediction_path = 'static/result/prediction' + random_sequence + '.png'
+        path = 'static/data/' + random_sequence + '_' + filename
+        color_map_path = 'static/result/' + random_sequence + '_colormap.png'
+        prediction_path = 'static/result/' + random_sequence + '_prediction.png'
         # rename the colormap and prediction
         os.rename('app/static/result/colormap.png', 'app/' + color_map_path)
         os.rename('app/static/result/prediction.png', 'app/' + prediction_path)
