@@ -1,7 +1,8 @@
+# -*- coding:utf-8 -*-
 from flask import render_template, request
 from flask import jsonify
 from app import app
-from services import upload_image, parse_image
+from services import upload_and_parse
 import os
 
 # get the current folder
@@ -16,16 +17,7 @@ def index():
 
 @app.route('/upload_and_parse', methods=['POST'])
 def upload():
-    upload_file = request.files['file']
+    uploaded_file = request.files['file']
     dir_path = os.path.join(APP_ROOT, 'static/data')
-    upload_image(dir_path, upload_file)
-    path = 'static/data/' + upload_file.filename
-    color_map_path = 'static/result/colormap.png'
-    prediction_path = 'static/result/prediction.png'
-    parse_image(upload_file.filename)
-    return jsonify({
-        'path': path,
-        'name': upload_file.filename,
-        'color_map_path': color_map_path,
-        'prediction_path': prediction_path
-    })
+    result = upload_and_parse(dir_path, uploaded_file)
+    return jsonify(result)

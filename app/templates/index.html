@@ -290,6 +290,10 @@
 		var uploadflag = true;
 		//显示上传模块
 		function showUpload() {
+		    $('#uploaded_img').attr('src', '');
+		    $('#uploaded_name').html('');
+			$('#color_map').attr('src', '');
+			$('#prediction').attr('src', '');
 			$('#uploadarea').attr('style', '');
 			$('#resultarea').attr('style', 'display:none;');
 		}
@@ -299,23 +303,6 @@
 			$('#detailarea').attr('style', 'display:none;');
 			$('#loadingarea').attr('style','display:none;');
 			$('#resultarea').attr('style', '');
-		}
-		//显示详情模块
-		function showDetail(e){
-		    var plant_image = $(e.target).attr("src");
-			var plant_name = $(e.target).attr("plant_name");
-			var other_name = $(e.target).attr("other_name");
-			var formal_name = $(e.target).attr("formal_name");
-			var plant_class = $(e.target).attr("plant_class");
-			var plant_address = $(e.target).attr("plant_address");
-			$('#detail_img').attr("src",plant_image);
-			$('#detail_name').html(plant_name);
-			$('#detail_class').html(plant_class);
-			$('#detail_oname').html(other_name);
-			$('#detail_fname').html(formal_name);
-			$('#detail_address').html(plant_address);
-		    $('#resultarea').attr('style', 'display:none;');
-			$('#detailarea').attr('style', '');
 		}
 		$(document).ready(
 				function() {
