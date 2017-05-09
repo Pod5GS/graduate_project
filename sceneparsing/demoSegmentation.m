@@ -12,13 +12,12 @@ addpath '/home/andywei/caffe/matlab'
 % http://sceneparsing.csail.mit.edu/model/FCN_iter_160000.caffemodel
 % and the DilatedNet model at
 % http://sceneparsing.csail.mit.edu/model/DilatedNet_iter_120000.caffemodel
-model_type = 'FCN'; %Dilated'
 if (strcmp(model_type, 'FCN'))
 	model_definition = 'models/deploy_FCN.prototxt';
 	model_weights = 'models/FCN_iter_160000.caffemodel';
 elseif (strcmp(model_type, 'Dilated')) 
 	model_definition = 'models/deploy_DilatedNet.prototxt';
-	model_weights = 'DilatedNet_iter_120000.caffemodel';
+	model_weights = 'models/DilatedNet_iter_120000.caffemodel';
 end
 disp(model_definition)
 

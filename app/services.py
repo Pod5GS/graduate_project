@@ -4,12 +4,12 @@ import os
 from utils import generate_random_sequence
 
 
-def upload_and_parse(dir_path, uploaded_file):
+def upload_and_parse(dir_path, uploaded_file, model_type):
     random_sequence = generate_random_sequence()
     filename = uploaded_file.filename
     path = dir_path + '/' + random_sequence + '_' + filename
     uploaded_file.save(path)
-    cmd = "sh app/scripts/parse_image.sh " + random_sequence + '_' + filename
+    cmd = "sh app/scripts/parse_image.sh " + random_sequence + '_' + filename + ' ' + model_type
 
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE, shell=True)

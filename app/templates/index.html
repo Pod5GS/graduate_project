@@ -34,11 +34,12 @@
 <link rel="stylesheet" href="static/css/dropzone.css">
 <link rel="stylesheet" href="static/css/sweetalert.css">
 <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="static/css/easydropdown.flat.css">
 <!-- Modernizr JS -->
 <script src="static/js/modernizr-2.6.2.min.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
+<script src="js/respond.min.js"></script>
 	<![endif]-->
 <style>
 .uline-title {
@@ -117,6 +118,154 @@
     box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
   }
 }
+* {
+    margin: 0;
+    padding: 0;
+  	-moz-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	@-moz-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-webkit-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-o-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	.round {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding-top: 30px;
+		text-decoration: none;
+		text-align: center;
+		font-size: 25px;
+		text-shadow: 0 1px 0 rgba(255,255,255,.7);
+		letter-spacing: -.065em;
+		font-family: "Hammersmith One", sans-serif;
+		-webkit-transition: all .25s ease-in-out;
+		-o-transition: all .25s ease-in-out;
+		-moz-transition: all .25s ease-in-out;
+		transition: all .25s ease-in-out;
+		box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+		border-radius: 300px;
+		z-index: 1;
+		border-width: 4px;
+		border-style: solid;
+	}
+
+	.round:hover {
+		width: 130%;
+		height: 130%;
+		left: -15%;
+		top: -15%;
+		font-size: 33px;
+		padding-top: 38px;
+		-webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		z-index: 2;
+		border-size: 10px;
+		-webkit-transform: rotate(-360deg);
+		-moz-transform: rotate(-360deg);
+		-o-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+	}
+	.round-button ul {
+		margin: 30px auto;
+		text-align: center;
+		padding: 0px;
+	}
+
+	.round-button ul li {
+		list-style: none;
+		position: relative;
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+	}
+	a.red {
+		background-color: rgba(239,57,50,1);
+		color: rgba(133,32,28,1);
+		border-color: rgba(133,32,28,.2);
+	}
+
+	a.red:hover {
+		color: rgba(239,57,50,1);
+	}
+
+	a.green {
+		background-color: rgba(1,151,171,1);
+		color: rgba(0,63,71,1);
+		border-color: rgba(0,63,71,.2);
+	}
+
+	a.green:hover {
+		color: rgba(1,151,171,1);
+	}
+
+	a.yellow {
+		background-color: #f86942;
+		color: #fff;
+		border-color: #ea4a1e;
+	}
+
+	a.yellow:hover {
+		color: #fff;
+	}
+
+	.round span.round {
+		display: block;
+		opacity: 0;
+		-webkit-transition: all .5s ease-in-out;
+		-moz-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+		font-size: 1px;
+		border: none;
+		padding: 40% 20% 0 20%;
+		color: #fff;
+	}
+
+	.round span:hover {
+		opacity: .85;
+		font-size: 16px;
+		-webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		text-shadow: 0 1px 1px rgba(0,0,0,.5);
+	}
+
+	.green span {
+		background: rgba(0,63,71,.7);
+	}
+
+	.red span {
+		background: rgba(133,32,28,.7);
+	}
+
+	.yellow span {
+		background: #e4623f;
+
+	}
 </style>
 </head>
 <body>
@@ -162,25 +311,68 @@
 			<div class="row">
 				<div
 					class="col-md-8 col-md-offset-2 text-center fh5co-section-heading work-box fadeInUp animated">
-					<h2 class="uline-title text-center">上传您的图片</h2>
+					<h2 class="uline-title text-center">Step 1: 上传您的图片</h2>
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
 			</div>
 			<div class="row">
 				<div id="dropzone">
-					<form action="upload_and_parse" class="dropzone" id="image"
-						enctype="multipart/form-data" method="post">
-						<div class="fallback">
-							<input name="file" type="file" />
-						</div>
-					</form>
-				</div>
-				<div style="margin-top:20px;">
-					<a id="submit-projectfile"
-						class="col-md-8 col-sm-12 col-md-offset-2 col-xs-12 btn btn-primary" style="display:none;">开始识别</a>
-				</div>
+				    <form action="upload_and_parse" class="dropzone" id="image"
+					      enctype="multipart/form-data" method="post">
+					    <div class="fallback">
+						    <input name="file" type="file" />
+					    </div>
+						<input id="input-model" name="model" style="display:none"/>
+				    </form>
+			    </div>
 			</div>
 			<div class="fh5co-spacer fh5co-spacer-md"></div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+		</div>
+		<div id="modelselectarea" class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-section-heading work-box fadeInUp animated">
+					<h2 class="uline-title text-center">Step 2:选择进行语义分割的模型</h2>
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				</div>
+			</div>
+			<div class="col-md-4 col-md-offset-4">
+				<select id="model-select" class="dropdown col-md-4 col-md-offset-4">
+					<option value="FCN">FCN</option>
+					<option value="Dilated">Dilated</option>
+				</select>
+			</div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+			<div>
+				<a class="btn btn-primary" style="float:left" onclick="goUpload()">
+					<i class="fa fa-long-arrow-left" aria-hidden="true"></i>上一步
+				</a>
+				<a class="btn btn-primary" style="float:right" onclick="goButton()">
+					下一步<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+		<div id="buttonarea" class="container">
+			<div class="row" style="margin-top: 100px;">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-section-heading work-box fadeInUp animated">
+					<h2 class="uline-title text-center">一切准备就绪，开始识别吧</h2>
+					<div class="fh5co-spacer fh5co-spacer-sm"></div>
+				</div>
+			</div>
+			<div class="col-md-4 col-md-offset-4 round-button">
+				<ul>
+					<li>
+						<a id="submit-projectfile" class="round yellow">Go!
+							<span class="round">开始分析!</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+			<a class="btn btn-primary" style="float:left" onclick="goModelselect()">
+				<i class="fa fa-long-arrow-left" aria-hidden="true"></i>上一步
+			</a>
 			<div class="fh5co-spacer fh5co-spacer-md"></div>
 		</div>
 		<div id="loadingarea" class="container" style="display:none">
@@ -188,6 +380,8 @@
 		         <div class="loader">Loading...</div>
 		         <h1>正在分析，请稍后</h1>
 		    </div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
+			<div class="fh5co-spacer fh5co-spacer-md"></div>
 		</div>
 		<!-- END container -->
 		<div id="resultarea" class="container" style="display:none">
@@ -278,14 +472,13 @@
 	<script src="static/js/easyResponsiveTabs.js"></script>
 	<!-- FastClick for Mobile/Tablets -->
 	<script src="static/js/fastclick.js"></script>
-	<!-- Parallax -->
-	<script src="static/js/jquery.parallax-scroll.min.js"></script>
 	<!-- Waypoints -->
 	<script src="static/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
 	<script src="static/js/main.js"></script>
 	<script src="static/js/dropzone.js"></script>
 	<script src="static/js/sweetalert.min.js"></script>
+	<script src="static/js/jquery.easydropdown.js"></script>
 	<script>
 		var uploadflag = true;
 		//显示上传模块
@@ -296,6 +489,8 @@
 			$('#prediction').attr('src', '');
 			$('#uploadarea').attr('style', '');
 			$('#resultarea').attr('style', 'display:none;');
+			$('#modelselectarea').attr('style', 'display:none')
+			$('#buttonarea').attr('style','display:none')
 		}
 		//显示结果模块
 		function showResult() {
@@ -304,8 +499,24 @@
 			$('#loadingarea').attr('style','display:none;');
 			$('#resultarea').attr('style', '');
 		}
+		function goUpload(){
+		    $('#modelselectarea').attr('style', 'display:none;')
+		    $('#uploadarea').attr('style', '')
+		}
+		function goButton(){
+		    model = $('#model-select option:selected').val()
+		    $('#input-model').attr("value", model)
+		    $('#modelselectarea').attr('style', 'display:none;')
+		    $('#buttonarea').attr('style', '')
+		}
+		function goModelselect(){
+		    $('#modelselectarea').attr('style', '')
+		    $('#buttonarea').attr('style', 'display:none;')
+		}
 		$(document).ready(
 				function() {
+				    $('#modelselectarea').attr('style','display:none;')
+				    $('#buttonarea').attr('style','display:none;')
 					//初始化dropzone
 					Dropzone.options.image = {
 						paramName : "file",// 与input的name属性一致
@@ -316,12 +527,11 @@
 						acceptedFiles : "image/jpeg,image/png",
 						maxFiles : 1,
 						init : function() {
-							var submitButton = document
-									.querySelector("#submit-projectfile");
+							var submitButton = document.querySelector("#submit-projectfile");
 							myDropzone = this; // closure
 							submitButton.addEventListener("click", function() {
 								myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-								$('#uploadarea').attr('style', 'display:none;');
+								$('#buttonarea').attr('style', 'display:none;');
 								$('#loadingarea').attr('style','');
 							});
 							//超出文件个数限制的事件
@@ -331,18 +541,16 @@
 							});
 							//添加一个文件的事件
 							this.on("addedfile", function(file) {
-								$('#submit-projectfile').attr("style", "");
-								if (this.files[1] != null) {
-									swal("错误", "一次只能鉴别一个植物图片！", "error");
+							    if (this.files[1] != null) {
+									swal("错误", "一次只能识别一个图片！", "error");
 									this.removeFile(this.files[0]);
+								}else{
+								    $('#uploadarea').attr("style","display:none;")
+								    $('#modelselectarea').attr("style", "");
 								}
 							});
-							//删除文件的事件，当上传的文件为空时，使上传按钮不可用状态
+							//删除文件的事件
 							this.on("removedfile", function() {
-								if (this.getAcceptedFiles().length === 0) {
-									$("#submit-projectfile").attr("style",
-											"display:none");
-								}
 							});
 							//ajax请求收到回复后的事件
 							this.on("complete", function(data) {

@@ -18,6 +18,7 @@ def index():
 @app.route('/upload_and_parse', methods=['POST'])
 def upload():
     uploaded_file = request.files['file']
+    model_type = request.form.get('model')
     dir_path = os.path.join(APP_ROOT, 'static/data')
-    result = upload_and_parse(dir_path, uploaded_file)
+    result = upload_and_parse(dir_path, uploaded_file, model_type)
     return jsonify(result)
