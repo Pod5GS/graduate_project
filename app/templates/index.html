@@ -360,6 +360,12 @@
 					<div class="fh5co-spacer fh5co-spacer-sm"></div>
 				</div>
 			</div>
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-xs-6 col-sm-offset-3 col-xs-offset-3 col-xxs-12 text-center fh5co-work-item work-box fadeInUp animated">
+				<h3 class="heading">您上传的图片是：</h3>
+				<figure><a><img id="upload_preview" class="img-responsive" src= "" style="width:100%;"></a></figure>
+				<h3 class="heading" style="margin-top:50px;">您选择的模型是：</h3>
+				<h2 id="model-text" class="fh5co-lead"></h2>
+			</div>
 			<div class="col-md-4 col-md-offset-4 round-button">
 				<ul>
 					<li>
@@ -508,6 +514,9 @@
 		    $('#input-model').attr("value", model)
 		    $('#modelselectarea').attr('style', 'display:none;')
 		    $('#buttonarea').attr('style', '')
+		    preview = $('.dz-image').find('img').attr('src')
+		    $('#upload_preview').attr('src', preview)
+		    $('#model-text').html(model)
 		}
 		function goModelselect(){
 		    $('#modelselectarea').attr('style', '')
